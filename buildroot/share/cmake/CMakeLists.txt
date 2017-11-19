@@ -68,7 +68,7 @@ project(Marlin C CXX)
 #====================================================================#
 #  Register non standard hardware                                    #
 #====================================================================#
-#register_hardware_platform(/home/tom/test/Sanguino)
+register_hardware_platform(/home/daddel9/.arduino15/packages/Sanguino)
 
 #====================================================================#
 #  Print any info                                                    #

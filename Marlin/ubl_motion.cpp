@@ -32,11 +32,7 @@
 
   extern float destination[XYZE];
 
-  #if AVR_AT90USB1286_FAMILY  // Teensyduino & Printrboard IDE extensions have compile errors without this
-    inline void set_current_to_destination() { COPY(current_position, destination); }
-  #else
     extern void set_current_to_destination();
-  #endif
 
 #if ENABLED(DELTA)
 
@@ -154,7 +150,6 @@
         // a reasonable correction would be.
 
         planner._buffer_line(end[X_AXIS], end[Y_AXIS], end[Z_AXIS] + state.z_offset, end[E_AXIS], feed_rate, extruder);
-        set_current_to_destination();
 
         if (g26_debug_flag)
           debug_current_and_destination(PSTR("out of bounds in ubl.line_to_destination()"));
@@ -202,7 +197,6 @@
       if (g26_debug_flag)
         debug_current_and_destination(PSTR("FINAL_MOVE in ubl.line_to_destination()"));
 
-      set_current_to_destination();
       return;
     }
 
@@ -315,7 +309,6 @@
       if (current_position[X_AXIS] != end[X_AXIS] || current_position[Y_AXIS] != end[Y_AXIS])
         goto FINAL_MOVE;
 
-      set_current_to_destination();
       return;
     }
 
@@ -377,7 +370,6 @@
       if (current_position[X_AXIS] != end[X_AXIS] || current_position[Y_AXIS] != end[Y_AXIS])
         goto FINAL_MOVE;
 
-      set_current_to_destination();
       return;
     }
 
@@ -473,7 +465,6 @@
     if (current_position[X_AXIS] != end[X_AXIS] || current_position[Y_AXIS] != end[Y_AXIS])
       goto FINAL_MOVE;
 
-    set_current_to_destination();
   }
 
   #if UBL_DELTA

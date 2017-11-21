@@ -352,9 +352,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Stock CR-10 tuned for 70C
-  #define  DEFAULT_Kp 22.57
-  #define  DEFAULT_Ki 1.72
-  #define  DEFAULT_Kd 73.96
+  #define  DEFAULT_Kp 24.46
+  #define  DEFAULT_Ki 2.00
+  #define  DEFAULT_Kd 74.63
 
   // Ultimaker
   //#define  DEFAULT_Kp 22.2
@@ -400,9 +400,9 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   //Stock CR-10 Bed Tuned for 70C
-  #define  DEFAULT_bedKp 426.68
-  #define  DEFAULT_bedKi 78.92
-  #define  DEFAULT_bedKd 576.71
+  #define  DEFAULT_bedKp 669.48
+  #define  DEFAULT_bedKi 120.18
+  #define  DEFAULT_bedKd 932.33
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
@@ -476,10 +476,10 @@
 // Specify here all the endstop connectors that are connected to any endstop or probe.
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
-#define USE_XMIN_PLUG
+//#define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-//#define USE_XMAX_PLUG
+#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
@@ -752,7 +752,7 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true
+#define INVERT_X_DIR false
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR false
 
@@ -777,7 +777,7 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR 1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
 
@@ -1008,8 +1008,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_XY (25*60)
+#define HOMING_FEEDRATE_Z  (2*60)
 
 //=============================================================================
 //============================= Additional Features ===========================

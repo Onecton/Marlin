@@ -694,13 +694,13 @@
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 500
+#define XY_PROBE_SPEED 1500
 
 // Speed for the first approach when double-probing (with PROBE_DOUBLE_TOUCH)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
 
 // Speed for the "accurate" probe of each point
-#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 6)
+#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 5)
 
 // Use double touch for probing
 #define PROBE_DOUBLE_TOUCH
@@ -727,7 +727,7 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
-//#define Z_MIN_PROBE_REPEATABILITY_TEST
+#define Z_MIN_PROBE_REPEATABILITY_TEST
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
 // :{ 0:'Low', 1:'High' }
@@ -1009,7 +1009,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (25*60)
-#define HOMING_FEEDRATE_Z  (2*60)
+#define HOMING_FEEDRATE_Z  (4*60)
 
 //=============================================================================
 //============================= Additional Features ===========================

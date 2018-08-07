@@ -173,11 +173,19 @@
   #include "feature/prusa_MMU2/mmu2.h"
 #endif
 
-#if HAS_DRIVER(L6470)
-  #include "libs/L6470/L6470_Marlin.h"
+#if ENABLED(ANYCUBIC_TFT_MODEL)
+  #include "lcd/anycubic_TFT.h"
 #endif
 
 bool Running = true;
+
+#if ENABLED(TEMPERATURE_UNITS_SUPPORT)
+  TempUnit input_temp_units = TEMPUNIT_C;
+#endif
+
+#if HAS_DRIVER(L6470)
+  #include "libs/L6470/L6470_Marlin.h"
+#endif
 
 // For M109 and M190, this flag may be cleared (by M108) to exit the wait loop
 bool wait_for_heatup = true;
@@ -374,6 +382,10 @@ void manage_inactivity(const bool ignore_stepper_queue/*=false*/) {
 
   #if HAS_FILAMENT_SENSOR
     runout.run();
+  #endif
+
+  #if ENABLED(ANYCUBIC_TFT_MODEL) && ENABLED(ANYCUBIC_FILAMENT_RUNOUT_SENSOR)
+    AnycubicTFT.FilamentRunout();
   #endif
 
   if (queue.length < BUFSIZE) queue.get_available_commands();
@@ -621,6 +633,10 @@ void idle(
     max7219.idle_tasks();
   #endif
 
+  #ifdef ANYCUBIC_TFT_MODEL
+    AnycubicTFT.CommandScan();
+  #endif
+
   ui.update();
 
   #if ENABLED(HOST_KEEPALIVE_FEATURE)
@@ -709,6 +725,10 @@ void minkill(const bool steppers_off/*=false*/) {
 
   // Wait a short time (allows messages to get out before shutting down.
   for (int i = 1000; i--;) DELAY_US(600);
+
+  #ifdef ANYCUBIC_TFT_MODEL
+    AnycubicTFT.KillTFT();
+  #endif
 
   cli(); // Stop interrupts
 
@@ -860,6 +880,10 @@ void setup() {
       SPI.begin();
     #endif
     tmc_init_cs_pins();
+  #endif
+
+  #ifdef ANYCUBIC_TFT_MODEL
+    AnycubicTFT.Setup();
   #endif
 
   #ifdef BOARD_INIT
@@ -1131,5 +1155,10 @@ void loop() {
 
     queue.advance();
     endstops.event_handler();
+    idle();
+
+    #ifdef ANYCUBIC_TFT_MODEL
+      AnycubicTFT.CommandScan();
+    #endif
   }
 }

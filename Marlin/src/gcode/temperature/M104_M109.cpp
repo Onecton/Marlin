@@ -39,6 +39,10 @@
   #include "../../module/tool_change.h"
 #endif
 
+#if ENABLED(ANYCUBIC_TFT_MODEL)
+  #include "../../lcd/anycubic_TFT.h"
+#endif
+
 /**
  * M104: Set hot end temperature
  */
@@ -135,12 +139,21 @@ void GcodeSuite::M109() {
     #endif
   }
 
+  #ifdef ANYCUBIC_TFT_MODEL
+    AnycubicTFT.HeatingStart();
+  #endif
+
   #if ENABLED(AUTOTEMP)
     planner.autotemp_M104_M109();
   #endif
 
   if (set_temp)
     (void)thermalManager.wait_for_hotend(target_extruder, no_wait_for_cooling);
+
+  #ifdef ANYCUBIC_TFT_MODEL
+    AnycubicTFT.HeatingDone();
+  #endif
+
 }
 
 #endif // EXTRUDERS

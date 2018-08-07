@@ -72,6 +72,10 @@
   #include "tool_change.h"
 #endif
 
+#if ENABLED(ANYCUBIC_TFT_MODEL)
+  #include "../lcd/anycubic_TFT.h"
+#endif
+
 #if USE_BEEPER
   #include "../libs/buzzer.h"
 #endif
@@ -3023,6 +3027,10 @@ void Temperature::isr() {
           }
         #endif
 
+        #ifdef ANYCUBIC_TFT_MODEL
+          AnycubicTFT.CommandScan();
+        #endif
+
         first_loop = false;
 
       } while (wait_for_heatup && TEMP_CONDITIONS);
@@ -3145,6 +3153,10 @@ void Temperature::isr() {
             wait_for_heatup = false;
             ui.quick_feedback();
           }
+        #endif
+
+        #ifdef ANYCUBIC_TFT_MODEL
+          AnycubicTFT.CommandScan();
         #endif
 
         #if TEMP_BED_RESIDENCY_TIME > 0

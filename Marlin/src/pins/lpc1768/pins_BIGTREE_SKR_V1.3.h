@@ -49,14 +49,14 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN  P1_24
+  #define Z_MIN_PROBE_PIN  Z_MIN_PIN
 #endif
 
 //
 // Filament Runout Sensor
 //
 #ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN   P1_24 // Z_MIN_PIN
+  #define FIL_RUNOUT_PIN  P1_29
 #endif
 
 //

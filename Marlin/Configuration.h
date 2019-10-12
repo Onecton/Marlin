@@ -773,7 +773,7 @@
   #define DEFAULT_ZJERK  1
 #endif
 
-#define DEFAULT_EJERK    20.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    8.0  // May be used by Linear Advance
 
 /**
  * S-Curve Acceleration

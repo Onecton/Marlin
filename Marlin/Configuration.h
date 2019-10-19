@@ -613,7 +613,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 92.6 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 395.88 }  //395.88 calculated Steps for Upgraded i3MegaS Extruder
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -853,15 +853,15 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true
-#define INVERT_Y_DIR false
-#define INVERT_Z_DIR false
+#define INVERT_X_DIR true   // true default, If TMC2208 v1.0 & v1.2 are used set to false
+#define INVERT_Y_DIR false  // false default, if TMC2208 v1.0 & v1.2 are used set to true
+#define INVERT_Z_DIR false  // false default, if TMC2208 v1.0 & v1.2 are used set to true
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
-#define INVERT_E1_DIR false
+#define INVERT_E0_DIR false // false default, if TMC2208 v1.0 & v1.2 are used set to true
+#define INVERT_E1_DIR false // false default, if TMC2208 v1.0 & v1.2 are used set to true
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
